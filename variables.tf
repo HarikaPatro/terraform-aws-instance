@@ -6,6 +6,10 @@ variable "ami_id" {
 variable "instance_type" {
     type = string
     description = "instance type used for creating ec2 instance"
+    validation {
+        condition = contains(["t3.micro", "t3.small", "t3.medium"], var.instance_type)
+        error_message = "Please select either t3 micro or small or medium"
+    }
 }
 
 variable "sg_ids" {
